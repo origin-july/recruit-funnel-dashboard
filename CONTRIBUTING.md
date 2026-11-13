@@ -28,7 +28,7 @@
 ## 跑起来
 
 ```bash
-git clone https://github.com/{{GITHUB_USER}}/recruit-funnel-dashboard.git
+git clone https://github.com/origin-july/recruit-funnel-dashboard.git
 cd recruit-funnel-dashboard
 ```
 

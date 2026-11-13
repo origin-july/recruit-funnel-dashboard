@@ -82,7 +82,7 @@ W42 待约面      ──2──→  W43 待约面
 ## 快速开始
 
 ```bash
-git clone https://github.com/{{GITHUB_USER}}/recruit-funnel-dashboard.git
+git clone https://github.com/origin-july/recruit-funnel-dashboard.git
 cd recruit-funnel-dashboard
 ```
 
