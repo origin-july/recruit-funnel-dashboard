@@ -1,0 +1,36 @@
+name: 检查
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  check:
+    name: 语法与引用检查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 检查 JS 语法
+        run: |
+          node --check app.js
+          node --check data.js
+          echo "✅ 语法正常"
+
+      - name: 检查 data.js 数据自洽
+        run: node scripts/validate.js
+
+      - name: 检查资源引用
+        run: |
+          fail=0
+          for f in $(grep -o 'src="[^"]*"\|href="[^"]*"' index.html | sed 's/.*="//;s/"//'); do
+            if [ ! -f "$f" ]; then echo "❌ 引用缺失: $f"; fail=1; fi
+          done
+          [ $fail -eq 0 ] && echo "✅ 资源引用齐全"
+          exit $fail

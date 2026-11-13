@@ -1,0 +1,27 @@
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 本地临时文件
+*.log
+*.tmp
+*~
+
+# 测试截图（生成物，不进版本库；docs/screenshots 里的除外）
+shot-*.png
+_*.js
+
+# 真实招聘数据绝不进版本库
+data.local.js
+data.prod.js
+*.private.js
+
+# 岗位台账、候选人导出
+positions*.json
+candidates*.csv

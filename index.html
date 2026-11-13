@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>招聘漏斗 · 周度可视化面板</title>
+<meta name="description" content="以候选人为唯一键跨周跟踪的招聘漏斗面板，支持周环比、环节转化、跨周流转与候选人明细筛选">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>招聘漏斗 · <span>周度可视化面板</span></h1>
+      <div class="sub">以候选人为唯一键跨周跟踪 ｜ 数据源：招聘漏斗周报记录 ｜ <span id="genAt"></span></div>
+    </div>
+    <div class="controls">
+      <div class="week-switch" id="weekSwitch"></div>
+      <span class="status-tag" id="weekTag"></span>
+    </div>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <div class="link-strip" id="linkStrip"></div>
+
+  <div class="grid">
+    <div class="card col-7">
+      <h3>周度趋势</h3>
+      <div class="cap">各环节人数按周追加；进行中的周为部分数据，未来周留空</div>
+      <div id="trendChart" class="chart"></div>
+    </div>
+    <div class="card col-5">
+      <h3>环节转化率对比</h3>
+      <div class="cap">同一口径下的周环比；含跨周存量，比率用于趋势观察</div>
+      <div id="convChart" class="chart"></div>
+    </div>
+
+    <div class="card col-7">
+      <h3>跨周流转图</h3>
+      <div class="cap" id="sankeyCap"></div>
+      <div id="sankeyChart" class="chart tall"></div>
+    </div>
+    <div class="card col-5">
+      <h3>简历来源结构 <span class="tag-mini" id="srcTag"></span></h3>
+      <div class="cap">按渠道拆分当周简历进入 / 推荐人次</div>
+      <div id="sourceChart" class="chart tall"></div>
+    </div>
+
+    <div class="card col-12">
+      <h3>周度汇总</h3>
+      <div class="cap">本周与上周对比在同一张表内对齐；表尾自动增加新周</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>周次</th><th>周期</th><th class="num">简历进入/推荐</th><th class="num">面试场次</th>
+              <th class="num">进入二面/复试</th><th class="num">新增 Offer</th><th class="num">本周到岗</th>
+              <th class="num">简历→Offer</th><th class="num">流程内候选人</th><th>状态</th>
+            </tr>
+          </thead>
+          <tbody id="summaryBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card col-12">
+      <h3>候选人明细与跨周状态</h3>
+      <div class="cap">上周状态 → 本周状态；同一候选人只保留一行，状态随周更新</div>
+      <div class="chips" id="filters"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>候选人</th><th>部门 / 岗位</th><th id="thPrev">上周</th><th id="thCurr">本周</th><th>当前状态</th></tr>
+          </thead>
+          <tbody id="candBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>口径说明：</b>
+    ① 以候选人为唯一键，每周记录一次阶段快照，历史不覆盖，因此可计算跨周承接、流失与周环比；
+    ② 简历按人次、面试按场次统计，部分环节包含跨周存量，跨周数值不能直接相除当作同批转化率；
+    ③ 进行中的周为部分数据，之后面试与结果待补；
+    ④ 通过率、到岗等最终结果以招聘漏斗周报记录为准，面板只做呈现，不改变统计口径。
+    <br><br>
+    <b>关于示例数据：</b>本仓库内所有候选人、部门、数字均为虚构，仅用于演示面板结构与交互。接入真实数据时替换 <code>app.js</code> 顶部的 <code>WEEKS</code> 与 <code>CANDIDATES</code> 即可，渲染逻辑不需要改动。
+  </div>
+</div>
+
+<script src="vendor/echarts.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+name: Bug 反馈
+description: 报告一个可以复现的问题
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **请不要粘贴真实招聘数据。** 需要说明数据问题时，用 `data.js` 里的虚构姓名替换。
+
+  - type: dropdown
+    id: block
+    attributes:
+      label: 哪一区块
+      options:
+        - KPI 卡片
+        - 周度趋势图
+        - 环节转化率
+        - 跨周流转桑基图
+        - 简历来源结构
+        - 周度汇总表
+        - 候选人明细与筛选
+        - 整页样式 / 布局
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 实际发生了什么
+      placeholder: 切到 W42 后，趋势图上 W42 的「到岗」点显示为空
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你期望什么
+      placeholder: 应该显示 0，而不是断点
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开 index.html
+        2. 点顶部 W42 按钮
+        3. 看左上「周度趋势」图
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: 浏览器与版本
+      placeholder: Chrome 131 / Edge 131
+    validations:
+      required: true
+
+  - type: input
+    id: viewport
+    attributes:
+      label: 窗口宽度
+      description: 布局问题必填。响应式断点在 900px 和 560px
+      placeholder: 1440 / 768 / 390
+
+  - type: textarea
+    id: console
+    attributes:
+      label: 控制台报错
+      description: F12 → Console，贴红色部分。没有就留空
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 已确认
+      options:
+        - label: 我用的是 data.js 里的虚构数据，没有改动
+        - label: 我确认没有在截图或文字里带上真实候选人信息
