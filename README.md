@@ -6,6 +6,8 @@
 
 ![桌面端](docs/screenshots/desktop.png)
 
+[在线演示](https://origin-july.github.io/recruit-funnel-dashboard/)
+
 > **本仓库所有候选人、部门、数字均为虚构示例**，仅用于演示面板结构与交互。接真实数据只改 `data.js`。
 
 ---
